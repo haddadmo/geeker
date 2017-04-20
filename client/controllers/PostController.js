@@ -11,36 +11,10 @@ Template.Post.onCreated(function(){
 
 Template.Post.events({
 	'click .like': function(){
-		var like = Likes.findOne({geeker: Meteor.userId(), relatedPost: this._id});
-		if(like){
-			if(like.isLike){
-				Likes.remove(like._id);
-			}else{
-				Likes.update(like._id, {
-					$set: {
-						isLike: true
-					}
-			    });
-			}
-		}else{
-			Likes.insert({relatedPost: this._id, geeker: Meteor.userId(), isLike: true})
-		}
+		Meteor.call('likePost', this._id);
 	},
 	'click .dislike': function(){
-		var dislike = Likes.findOne({geeker: Meteor.userId(), relatedPost: this._id});
-		if(dislike){
-			if(!dislike.isLike){
-				Likes.remove(dislike._id);
-			}else{
-				Likes.update(dislike._id, {
-					$set: {
-						isLike: false
-					}
-			    });
-			}
-		}else{
-			Likes.insert({relatedPost: this._id, geeker: Meteor.userId(), isLike: false})
-		}
+		Meteor.call('dislikePost', this._id);
 	}
 })
 

@@ -33,7 +33,11 @@ Template.Geeker.helpers({
 
 		var geeker = Meteor.users.findOne(this.geeker);
 
-		geeker.email = geeker.emails[0].address;
+		if(geeker.emails && geeker.emails.length > 0){
+			geeker.email = geeker.emails[0].address;
+		}else if(geeker.services != undefined && geeker.services.facebook != undefined){
+			geeker.email = geeker.services.facebook.email;
+		}
 		geeker.firstLetter = geeker.email[0];
 
 		var hex, i;
@@ -86,10 +90,9 @@ Template.Geeker.helpers({
 
 Template.Geeker.events({
 	'click .subscribe': function(){
-		GeekSubscriptions.insert({ follower: Meteor.userId(), followed: this.geeker });
+		Meteor.call('geekSubscribe',this.geeker);
 	},
 	'click .unsubscribe': function(){
-		var geekSub = GeekSubscriptions.findOne({follower: Meteor.userId(), followed: this.geeker});
-		GeekSubscriptions.remove(geekSub._id);
+		Meteor.call('geekUnsubscribe', this.geeker);
 	}
 })
