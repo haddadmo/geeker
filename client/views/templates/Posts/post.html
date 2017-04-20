@@ -1,0 +1,23 @@
+<template name="Post">
+	
+	<div class="post">
+		{{> Geeker geeker=geeker}}
+		
+		<div class="post-content">
+			<blockquote><span class="quote-mark pull-left">“</span>{{content}}<span class="quote-mark pull-right">”</span></blockquote>
+			<span class="source">Source: {{source}}</span>
+		</div>
+		<div class="clearfix"></div>
+		<hr>
+		<div class="post-likes">
+			<div class="like active">
+				<i class="fa fa-thumbs-up"></i> Not bad!
+			</div>
+			<div class="dislike">
+				<i class="fa fa-thumbs-down"></i> Looser!
+				
+			</div>
+		</div>
+	</div>
+
+</template>

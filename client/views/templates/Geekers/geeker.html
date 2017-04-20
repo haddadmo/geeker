@@ -1,0 +1,13 @@
+<template name="Geeker">
+	<div class="geeker">
+		<span class="geeker-icon" style="background-color:{{geeker.background}}">{{geeker.firstLetter}}</span>
+		<span class="geeker-email">{{geeker.email}}</span>
+		{{#if notSubscribed }}
+			<button class="btn subscribe">Subscribe</button>
+		{{/if}}
+		{{#if subscribed }}
+			<button class="btn unsubscribe">Un-Subscribe</button>
+		{{/if}}
+	</div>
+	<div class="clearfix"></div>
+</template>
