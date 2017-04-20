@@ -10,11 +10,11 @@
 		<div class="clearfix"></div>
 		<hr>
 		<div class="post-likes">
-			<div class="like active">
-				<i class="fa fa-thumbs-up"></i> Not bad!
+			<div class="like {{#if isLike}}active{{/if}}">
+				<i class="fa fa-thumbs-up"></i> Not bad! {{#if gt likesNumber 0}}<span>{{likesNumber}} geeker{{#if gt likesNumber 1}}s{{/if}} like this post</span>{{/if}}
 			</div>
-			<div class="dislike">
-				<i class="fa fa-thumbs-down"></i> Looser!
+			<div class="dislike {{#if isDislike}}active{{/if}}">
+				<i class="fa fa-thumbs-down"></i> Looser! {{#if gt dislikesNumber 0}}<span>{{dislikesNumber}} geeker{{#if gt dislikesNumber 1}}s{{/if}} don't like this post</span>{{/if}}
 				
 			</div>
 		</div>

@@ -403,6 +403,7 @@ input, select, textarea
     position relative
     margin-top -25px
     margin-left -45px
+    padding-right: 35px;
     .geeker-icon
         display block
         position absolute
@@ -461,6 +462,7 @@ aside.geekers
     .geeker
         float none
         margin 0 0 5px
+        min-height: 50px;
         .btn
             font-size: 10px;
             text-transform: capitalize;
@@ -471,3 +473,65 @@ aside.geekers
             position: absolute;
             top: 15px;
             right: -5px;
+    .geeker-email
+        margin-top: -8px;
+        display: block;
+
+.post-likes > div
+    cursor pointer
+    color gray
+
+.post-likes
+    .active
+        font-weight 800
+        span
+            font-weight 300
+            font-style italic
+            font-size 12px
+    .like.active
+        color: blue
+    .dislike.active
+        color: red
+
+.geeker-header 
+    .geeker
+        float: none;
+        border-radius: 0;
+        margin-left: 0;
+        overflow: hidden;
+        .geeker-icon
+            top: -12px;
+            left: -22px;
+            height: 78px;
+            padding: 23px 35px 26px 40px;
+            border-radius: 0;
+        .btn
+            font-size: 10px;
+            text-transform: capitalize;
+            height: 21px;
+            margin-top: 3px;
+            line-height: 6px;
+            margin-left: 15px;
+        .geeker-email
+            margin-left 55px
+
+
+.stats
+    font-size 10px;
+    position: absolute;
+    left: 60px;
+    .like-stat
+        color blue
+    .dislike-stat
+        color red
+.geeker-header .stats
+    font-size: 14px;
+    float: right;
+    position: relative;
+    left: 0;
+    margin-top: 2px;
+
+
+
+
+

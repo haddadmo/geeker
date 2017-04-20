@@ -2,6 +2,7 @@
 Template.Geeker.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
+		self.subscribe('posts');
 		self.subscribe('users');
 		self.subscribe('geekSubscriptions');
 	})
@@ -45,6 +46,41 @@ Template.Geeker.helpers({
 
 		geeker.background = '#' + result;
 		return geeker;
+	},
+	geekerLikesPercentage: function(){
+		var geekerPostsIds = Posts.find({geeker: this.geeker}).fetch().map(function(post) { 
+	        return post._id;
+	    });
+
+ 		var likes = Likes.find({ relatedPost: { $in: geekerPostsIds }, isLike: true }).count();
+ 		var disLikes = Likes.find({ relatedPost: { $in: geekerPostsIds }, isLike: false }).count();
+
+ 		var totalReaction = likes + disLikes;
+ 		var likesPercentage = parseInt((likes / totalReaction) * 10000)/100;
+ 		return likesPercentage;
+
+	},
+	geekerDislikesPercentage: function(){
+		var geekerPostsIds = Posts.find({geeker: this.geeker}).fetch().map(function(post) { 
+	        return post._id;
+	    });
+
+ 		var likes = Likes.find({ relatedPost: { $in: geekerPostsIds }, isLike: true }).count();
+ 		var disLikes = Likes.find({ relatedPost: { $in: geekerPostsIds }, isLike: false }).count();
+
+ 		var totalReaction = likes + disLikes;
+ 		var dislikesPercentage = parseInt((disLikes / totalReaction) * 10000)/100;
+ 		return dislikesPercentage;
+	},
+	geekerHaveReactions: function(){
+		var geekerPostsIds = Posts.find({geeker: this.geeker}).fetch().map(function(post) { 
+	        return post._id;
+	    });
+
+ 		var likes = Likes.find({ relatedPost: { $in: geekerPostsIds } }).count();
+ 		if(likes > 0)
+ 			return true;
+ 		return false;
 	}
 });
 

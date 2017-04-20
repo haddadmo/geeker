@@ -1,12 +1,17 @@
 <template name="Geeker">
 	<div class="geeker">
 		<span class="geeker-icon" style="background-color:{{geeker.background}}">{{geeker.firstLetter}}</span>
-		<span class="geeker-email">{{geeker.email}}</span>
+		<span class="geeker-email"><a href="/geeker/{{geeker._id}}">{{geeker.email}}</a></span>
 		{{#if notSubscribed }}
 			<button class="btn subscribe">Subscribe</button>
 		{{/if}}
 		{{#if subscribed }}
 			<button class="btn unsubscribe">Un-Subscribe</button>
+		{{/if}}
+		{{#if geekerHaveReactions}}
+			<div class="stats">
+				<span class="like-stat">{{geekerLikesPercentage}}% likes </span><span class="dislike-stat">{{geekerDislikesPercentage}}% don't like</span>
+			</div>
 		{{/if}}
 	</div>
 	<div class="clearfix"></div>

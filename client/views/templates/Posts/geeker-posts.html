@@ -1,0 +1,15 @@
+<template name="GeekerPosts">
+	
+	<section class="posts">
+		<div class="geeker-header">
+			{{> Geeker geeker=geekerId subscribeList=true}}
+		</div>
+		{{#each posts}}
+			{{> Post}}
+		{{/each}}
+	</section>
+	<aside class="geekers">
+		{{> Geekers}}
+	</aside>
+
+</template>
