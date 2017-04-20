@@ -33,23 +33,32 @@ Template.Geeker.helpers({
 
 		var geeker = Meteor.users.findOne(this.geeker);
 
-		if(geeker.emails && geeker.emails.length > 0){
-			geeker.email = geeker.emails[0].address;
-		}else if(geeker.services != undefined && geeker.services.facebook != undefined){
-			geeker.email = geeker.services.facebook.email;
+		if(geeker){
+
+			geeker.email = ""
+				
+			if(geeker.emails && geeker.emails.length > 0){
+				geeker.email = geeker.emails[0].address;
+			}else if(geeker.services != undefined && geeker.services.facebook != undefined){
+				geeker.email = geeker.services.facebook.email;
+			}
+
+			geeker.firstLetter = geeker.email[0];
+
+			var hex, i;
+
+		    var result = "";
+		    for (i=0; i<3; i++) {
+		        hex = geeker.email.charCodeAt(i).toString(16);
+		        result += ("000"+hex).slice(-2);
+		    }
+
+			geeker.background = '#' + result;
+			return geeker;
+		}else{
+			return {}
 		}
-		geeker.firstLetter = geeker.email[0];
-
-		var hex, i;
-
-	    var result = "";
-	    for (i=0; i<3; i++) {
-	        hex = geeker.email.charCodeAt(i).toString(16);
-	        result += ("000"+hex).slice(-2);
-	    }
-
-		geeker.background = '#' + result;
-		return geeker;
+		
 	},
 	geekerLikesPercentage: function(){
 		var geekerPostsIds = Posts.find({geeker: this.geeker}).fetch().map(function(post) { 
